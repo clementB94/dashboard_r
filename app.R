@@ -6,8 +6,19 @@
 #
 #    http://shiny.rstudio.com/
 #
-
 library(shiny)
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+
+df1 <- read.csv('athlete_events.csv')
+medal <- select(df1,'NOC','Medal')
+medal <- na.omit(medal)
+medal <- table(medal)
+medal <- medal[order(medal[,2]),]
+medal <- tail(medal,20)
+
+print(medal)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
