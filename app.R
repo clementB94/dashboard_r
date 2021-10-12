@@ -7,52 +7,57 @@
 #    http://shiny.rstudio.com/
 #
 library(shiny)
+library(lubridate)
+library(tidyverse)
 library(gapminder)
 library(dplyr)
 library(ggplot2)
+library(plotly)
 
 df1 <- read.csv('athlete_events.csv')
+df1 <- df1 %>% filter(!duplicated(cbind(Team,Games,Year,City,Sport,Event,Medal)))
+
 medal <- select(df1,'NOC','Medal')
 medal <- na.omit(medal)
 medal <- table(medal)
 medal <- medal[order(medal[,2]),]
 medal <- tail(medal,20)
+medal <- as.data.frame(medal)
 
-print(medal)
+years <- sort(unique(df1$Year))
+
+worlds_medals <- read_csv('athlete_events.csv') %>% 
+    select(Year, NOC, Medal) %>%
+    na.omit
+worlds_medals$Medal=1
+worlds_medals <- worlds_medals %>% group_by(Year,NOC) %>%
+    summarise(Medal = sum(Medal))
+
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Olympics game dashboard"),
 
-    # Sidebar with a slider input for number of bins 
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-           plotOutput("distPlot")
-        )
-    )
+ 
+    mainPanel(plotOutput("distPlot"),
+              plotlyOutput("world_map"))
 )
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
 
     output$distPlot <- renderPlot({
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white')
+        ggplot(medal, aes(fill=Medal, y=Freq, x=NOC)) + 
+            geom_bar(position="stack", stat="identity") +
+            scale_fill_manual(values = c("#614e1a", "#ffd700", "#C0C0C0"))
+    })
+    output$world_map <- renderPlotly({
+        plot_geo(worlds_medals, frame = ~Year) %>%
+            add_trace(locations = ~NOC,
+                      z = ~Medal,
+                      color = ~Medal)
     })
 }
 

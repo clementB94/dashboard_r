@@ -11,7 +11,7 @@ data$rank <- ordered(data$rank)
 data$country <- factor(data$country)
 data$name <- factor(data$name)
 
-ggplot(filter(data, sport=="100m"), aes(x=year,y=results, color=gender)) + geom_point() + geom_smooth
+ggplot(filter(data, sport=="100m"), aes(x=year,y=results, color=gender)) + geom_point() + geom_smooth()
 
 
 
