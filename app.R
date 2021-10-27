@@ -14,6 +14,8 @@ library(dplyr)
 library(ggplot2)
 library(plotly)
 
+Sys.setenv("VROOM_CONNECTION_SIZE"=131072 * 2)
+
 df1 <- read.csv('athlete_events.csv')
 df1 <- df1 %>% filter(!duplicated(cbind(Team,Games,Year,City,Sport,Event,Medal)))
 
@@ -33,6 +35,29 @@ worlds_medals$Medal=1
 worlds_medals <- worlds_medals %>% group_by(Year,NOC) %>%
     summarise(Medal = sum(Medal))
 
+data1 <- read_csv("running_times.csv")
+print(head(data1))
+data2 <- read_csv("athletics_results.csv")
+print(head(data2))
+print(unique(data2$sport))
+print('on est la')
+data2 <- transform(data2, year = as.numeric(year), rank = as.numeric(rank))
+print(data2$sport)
+data3 <- read_csv("swimming_results.csv")
+data3 <- transform(data3, year = as.numeric(year), rank = as.numeric(rank))
+print(data3$sport)
+
+data <- rbind(data1, data2, data3)
+print(unique(data$sport))
+data$results <- parse_time(data$results, "%H:%M:%OS")
+data$gender <- factor(data$gender)
+data$sport <- ordered(data$sport)
+data$location <- factor(data$location)
+data$year <- ordered(data$year)
+data$rank <- ordered(data$rank)
+data$country <- factor(data$country)
+data$name <- factor(data$name)
+
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -42,7 +67,11 @@ ui <- fluidPage(
 
  
     mainPanel(plotOutput("distPlot"),
-              plotlyOutput("world_map"))
+              plotlyOutput("world_map"),
+              selectInput("sport", "Select input",
+                          c(unique(data$sport))),
+              plotOutput("runningPlot")
+              )
 )
 
 # Define server logic required to draw a histogram
@@ -59,7 +88,11 @@ server <- function(input, output) {
                       z = ~Medal,
                       color = ~Medal)
     })
+    output$runningPlot <- renderPlot({
+        ggplot(filter(data, sport==input$sport), aes(x=year,y=results, color=gender)) + geom_point() + geom_smooth()
+    })
 }
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
