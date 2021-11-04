@@ -14,6 +14,7 @@ library(gapminder)
 library(dplyr)
 library(ggplot2)
 library(plotly)
+library(DT)
 
 Sys.setenv("VROOM_CONNECTION_SIZE"=131072 * 2)
 noc = c('GER', 'SUI', 'POR', 'NED', 'DEN', 'CRO', 'INA', 'MAS', 'UAE', 'KSA', 'IRI', 'CHI', 'SLO', 'GRE', 'BUL', 'LAT', 'OMA', 'MGL', 'NEP', 'RSA', 'GUI', 'SLE', 'BOT', 'GBS', 'GAM', 'MLI', 'ALG', 'LBA', 'ZIM', 'ANG', 'CGO', 'PAR', 'MAD', 'NIG', 'NGR', 'TOG', 'SUD', 'SRI', 'VIE', 'TPE', 'PHI', 'URU', 'GUA', 'CRC', 'HAI')
@@ -35,15 +36,15 @@ worlds_medals <- read.csv('athlete_events.csv') %>%
     select(Year, NOC, Medal) %>%
     na.omit
 worlds_medals$Medal=1
-worlds_medals <- worlds_medals  %>%  count()
-lapply(0:length(worlds_medals$freq),FUN = function(i){worlds_medals[worlds_medals == noc[i]] <<- iso[i]})
+worlds_medals <- worlds_medals  %>%  count(Year,NOC)
+lapply(0:length(worlds_medals$n),FUN = function(i){worlds_medals[worlds_medals == noc[i]] <<- iso[i]})
 
 worlds_medals_map <- read.csv('athlete_events.csv') %>% 
     select(Sport, NOC, Medal) %>%
     na.omit
 worlds_medals_map$Medal=1
-worlds_medals_map <- worlds_medals_map  %>%  count()
-lapply(0:length(worlds_medals_map$freq),FUN = function(i){worlds_medals_map[worlds_medals_map == noc[i]] <<- iso[i]})
+worlds_medals_map <- worlds_medals_map  %>%  count(NOC,Sport)
+lapply(0:length(worlds_medals_map$n),FUN = function(i){worlds_medals_map[worlds_medals_map == noc[i]] <<- iso[i]})
 
 data1 <- read.csv("running_times.csv")
 data1$results <- parse_time(data1$results, "%H:%M:%OS")
@@ -66,12 +67,31 @@ data$rank <- ordered(data$rank)
 data$country <- factor(data$country)
 data$name <- factor(data$name)
 
+weight_height <- read.csv('athlete_events.csv') %>%
+    select(Sport, Sex, Weight, Height, Age) %>% na.omit
+weight_height <- aggregate(weight_height[,3:4],list(weight_height$Sport,weight_height$Sex),mean)
+print(weight_height)
+weight_height <- round(weight_height,2)
+
+player_wise <- read.csv('athlete_events.csv') %>% select(Name,Medal) %>%
+    na.omit
+player_wise <- table(player_wise)
+player_wise <- as.data.frame(player_wise)
+player_wise <- spread(player_wise, key=Medal, value=Freq)
+player_wise$Total <- player_wise$Bronze + player_wise$Gold + player_wise$Silver
+
+sport_wise <- read.csv('athlete_events.csv') %>% select(Sport,Medal) %>%
+    na.omit
+sport_wise <- table(sport_wise)
+sport_wise <- as.data.frame(sport_wise)
+sport_wise <- spread(sport_wise, key=Medal, value=Freq)
+sport_wise$Total <- sport_wise$Bronze + sport_wise$Gold + sport_wise$Silver
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
 
     # Application title
-    titlePanel("Olympics game dashboard"),
+    titlePanel("Olympics Games Dashboard"),
 
  
     mainPanel(plotOutput("distPlot"),
@@ -84,7 +104,10 @@ ui <- fluidPage(
                            label = "Select a sport",
                            choices = list("Athletics" = "Athletics","Gymnastics" = "Gymnastics","Swimming" = "Swimming","Alpine Skiing" = "Alpine Skiing"),
                            selected = "Athletics", inline = T),
-              plotlyOutput("world_map_bysport")
+              plotlyOutput("world_map_bysport"),
+              plotOutput("weight_height_scatter"),
+              dataTableOutput("player_wise"),
+              dataTableOutput("sport_wise")
     )
 )
 
@@ -99,8 +122,8 @@ server <- function(input, output) {
     output$world_map <- renderPlotly({
         plot_geo(worlds_medals, frame = ~Year) %>%
             add_trace(locations = ~NOC,
-                      z = ~freq,
-                      color = ~freq)
+                      z = ~n,
+                      color = ~n)
     })
     output$runningPlot1 <- renderPlot({
         ggplot(filter(data, sport==input$sport), aes(x=year,y=results, color=gender))+geom_boxplot(position="dodge")+geom_smooth()
@@ -110,7 +133,20 @@ server <- function(input, output) {
     })
     output$world_map_bysport <- renderPlotly({
         subset <- worlds_medals_map %>% filter(Sport == input$rd)
-        plot_geo(subset, locations=subset$NOC, z=subset$freq, text=subset$NOC)
+        plot_geo(subset, locations=subset$NOC, z=subset$n, text=subset$NOC)
+    })
+    output$weight_height_scatter <- renderPlot({
+        ggplot(weight_height, aes(Weight,Height,color = Group.1, label = Group.1)) +
+            geom_point(show.legend = FALSE) +
+            facet_wrap(~Group.2, scales = "free", nrow = 1) + 
+            geom_text(size=3, show.legend = FALSE)
+
+    })
+    output$player_wise <- renderDataTable({
+        datatable(player_wise, option = list(order = list(5,'desc')))
+    })
+    output$sport_wise <- renderDataTable({
+        datatable(sport_wise, option = list(order = list(5,'desc')))
     })
 }
 
