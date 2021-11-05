@@ -15,6 +15,7 @@ library(dplyr)
 library(ggplot2)
 library(plotly)
 library(DT)
+library(ggrepel)
 
 Sys.setenv("VROOM_CONNECTION_SIZE"=131072 * 2)
 noc = c('GER', 'SUI', 'POR', 'NED', 'DEN', 'CRO', 'INA', 'MAS', 'UAE', 'KSA', 'IRI',
@@ -81,7 +82,7 @@ data2 <- read.csv("athletics_results.csv")
 #data2 <- transform(data2, year = as.numeric(year), rank = as.numeric(rank))
 
 data3 <- read.csv("swimming_results.csv")
-data3 <- data3[,-ncol(data)]
+#data3 <- data3[,-ncol(data)]
 data3$results <- parse_time(data3$results, "%H:%M:%OS")
 #data3 <- transform(data3, year = as.numeric(year), rank = as.numeric(rank))
 print(medal[medal$NOC %in% europe,])
@@ -132,34 +133,69 @@ pop_df <- merge(pop_df, team_wise, by.x = 'Country', by.y = 'Team')
 pop_df$logp <- log(pop_df$`Year_2016`)
 # Define UI for application that draws a histogram
 ui <- fluidPage(
-
     # Application title
     titlePanel("Olympics Games Dashboard"),
-
  
-    mainPanel(tabsetPanel(type = "tabs",
-                          tabPanel("Worldwide", plotOutput("Plot")),
-                          tabPanel("Europe", plotOutput("Ploteu")),
-                          tabPanel("America", plotOutput("Plotam")),
-                          tabPanel("Asia", plotOutput("Plotas")),
-                          tabPanel("Africa", plotOutput("Plotaf")),
-    ),
-              plotlyOutput("world_map"),
-              selectInput("sport", "Select input",
-                          c(unique(data$sport))),
-              plotOutput("runningPlot1"),
-              plotOutput("runningPlot2"),
-              radioButtons("rd",
-                           label = "Select a sport",
-                           choices = list("Athletics" = "Athletics","Gymnastics" = "Gymnastics","Swimming" = "Swimming","Alpine Skiing" = "Alpine Skiing"),
-                           selected = "Athletics", inline = T),
-              plotlyOutput("world_map_bysport"),
-              plotOutput("weight_height_scatter"),
-              dataTableOutput("player_wise"),
-              dataTableOutput("sport_wise"),
-              plotOutput("gdp_scatter"),
-              plotOutput("pop_scatter")
-    )
+    fluidRow(column(12, align = 'center',
+                  tags$h3('Amount of Medals by Country'),
+                  tabsetPanel(type = "tabs",
+                          tabPanel("Worldwide", plotOutput("Plot", width='100%')),
+                          tabPanel("Europe", plotOutput("Ploteu", width='100%')),
+                          tabPanel("America", plotOutput("Plotam", width='100%')),
+                          tabPanel("Asia", plotOutput("Plotas", width='100%')),
+                          tabPanel("Africa", plotOutput("Plotaf", width='100%'))
+                          ),
+                  tags$h3('World map of Medals won by Year'),
+                  plotlyOutput("world_map", width='100%'),
+                  tags$h3('Performance by Sport'),
+                  fluidRow(column(width = 6,
+                      selectInput("sport", "Select a sport",
+                                  c(unique(data$sport)))),
+                      column(width = 6,
+                      radioButtons("sex_select", "Which gender ?",
+                                   choices = unique(data$gender),
+                                 selected = "M", inline = T))
+                  ),
+                  plotOutput("runningPlot1", width='100%'),
+                  plotOutput("runningPlot2", width='100%'),
+                  tags$h3('World map of Performance by Sport'),
+                  radioButtons("rd",
+                               label = "Select a sport",
+                               choices = list("Athletics" = "Athletics",
+                                              "Gymnastics" = "Gymnastics",
+                                              "Swimming" = "Swimming",
+                                              "Alpine Skiing" = "Alpine Skiing",
+                                              "Cycling" = "Cycling",
+                                              "Wrestling" = "Wrestling",
+                                              "Shooting" = "Shooting",
+                                              "Canoeing" = "Canoeing",
+                                              "Fencing" = "Fencing",
+                                              "Archery" = "Archery",
+                                              "Rowing" = "Rowing",
+                                              "Football" = "Football",
+                                              "Volleyball" = "Volleyball",
+                                              "Diving" = "Diving",
+                                              "Equestrianism" = "Equestrianism",
+                                              "Sailing" = "Sailing",
+                                              "Weightlifting" = "Weightlifting",
+                                              "Basketball" = "Basketball",
+                                              "Hockey" = "Hockey",
+                                              "Boxing" = "Boxing",
+                                              "Art Competitions" = "Art Competitions",
+                                              "Judo" = "Judo",
+                                              "Tennis" = "Tennis"),
+                               selected = "Athletics", inline = T),
+                  plotlyOutput("world_map_bysport", width='100%'),
+                  tags$h3('Weight and Height by sport'),
+                  plotOutput("weight_height_scatter", width='100%'),
+                  tags$h3('Medals won by Player and Sport'),
+                  splitLayout(cellWidths = c("50%", "50%"),
+                              dataTableOutput("player_wise"),
+                              dataTableOutput("sport_wise")),
+                  tags$h3('Medals won by GDP and Population'),
+                  splitLayout(cellWidths = c("49%", "49%"),
+                              plotOutput("gdp_scatter"), plotOutput("pop_scatter"))
+    ))
 )
 
 # Define server logic required to draw a histogram
@@ -193,26 +229,37 @@ server <- function(input, output) {
     
     output$world_map <- renderPlotly({
         plot_geo(worlds_medals, frame = ~Year) %>%
-            add_trace(locations = ~NOC,
-                      z = ~n,
-                      color = ~n)
+            add_trace(locations = ~NOC, z = ~n, color = ~n, colors = 'Blues')
     })
     output$runningPlot1 <- renderPlot({
-        ggplot(filter(data, sport==input$sport), aes(x=year,y=results, color=gender))+geom_boxplot(position="dodge")+geom_smooth()
+        dataplot <- filter(data, sport==input$sport & gender==input$sex_select)
+        Q <- quantile(dataplot$results, probs=c(.25, .75), na.rm = FALSE)
+        iqr <- IQR(dataplot$results)
+        dataplot <- subset(dataplot, dataplot$results < (Q[2]+1.5*iqr))
+        ggplot(dataplot, aes(x=year,y=results, color=gender))+
+            geom_boxplot(position="dodge")+geom_smooth() +
+            labs(y='Results (H:M:S)')
     })
     output$runningPlot2 <- renderPlot({
-        ggplot(filter(data, sport==input$sport), aes(x=results, color=gender))+geom_histogram(alpha=0.7,position = "identity")
+        dataplot <- filter(data, sport==input$sport & gender==input$sex_select)
+        Q <- quantile(dataplot$results, probs=c(.25, .75), na.rm = FALSE)
+        iqr <- IQR(dataplot$results)
+        dataplot <- subset(dataplot, dataplot$results < (Q[2]+1.5*iqr))
+        ggplot(dataplot, aes(x=results, color=gender))+ 
+            geom_histogram(alpha=0.7,position = "identity")+
+            labs(x='Results (H:M:S)')
     })
     output$world_map_bysport <- renderPlotly({
         subset <- worlds_medals_map %>% filter(Sport == input$rd)
-        plot_geo(subset, locations=subset$NOC, z=subset$n, text=subset$NOC)
+        plot_geo(subset, locations=subset$NOC, z=subset$n, text=subset$NOC,
+                 colors = 'Blues')
     })
     output$weight_height_scatter <- renderPlot({
         ggplot(weight_height, aes(Weight,Height,color = Group.1, label = Group.1)) +
+            facet_wrap(~Group.2, scales = "free", nrow = 1) +
             geom_point(show.legend = FALSE) +
-            facet_wrap(~Group.2, scales = "free", nrow = 1) + 
-            geom_text(size=3, show.legend = FALSE)
-
+            geom_label_repel(show.legend = FALSE, fontface = "bold") +
+            labs(x='Weight (kg)', y='Height (cm)')
     })
     output$player_wise <- renderDataTable({
         datatable(player_wise, option = list(order = list(5,'desc')))
@@ -221,10 +268,14 @@ server <- function(input, output) {
         datatable(sport_wise, option = list(order = list(5,'desc')))
     })
     output$gdp_scatter <- renderPlot({
-        ggplot(gdp_df, aes(logw, Total)) + geom_point() + geom_smooth(method='lm')
+        ggplot(gdp_df, aes(logw, Total)) + geom_point() +
+            geom_smooth(method='lm') +
+            labs(x='Log(2016 GDP)', y='Total number of Medals')
     })
     output$pop_scatter <- renderPlot({
-        ggplot(pop_df, aes(logp, Total)) + geom_point() + geom_smooth(method='lm')
+        ggplot(pop_df, aes(logp, Total)) + geom_point() +
+            geom_smooth(method='lm') +
+            labs(x='Log(2020 Population)', y='Total number of Medals')
     })
 }
 
