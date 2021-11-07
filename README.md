@@ -32,6 +32,7 @@ You can download the folder and open the code with Rstudio, then you can click o
 
 ## Total amount of medals
 
+![Screenshot_1](https://user-images.githubusercontent.com/81488993/140648385-8a52d765-d053-4476-b712-f6250fe6eed3.png)
 
 
 Here we can see that United States are the strongest nation in the Olympic Games, they are folowed by the Soviet Union which no longer exist since 30 years, it does mean that during their 68 years of existence they were enough dominant to not be outdated. Further there is East Germany which is in almost in the same case. Overall we see that Western countries are the strongest even if China, Japan and South Korea are well positionned.
@@ -41,44 +42,44 @@ Here we can see that United States are the strongest nation in the Olympic Games
  
 | America | Asia |
 | ------------- | ------------- |
-| ![image](https://user-images.githubusercontent.com/81488993/138505538-10eab2be-a8b1-43fb-a514-2d3218169c57.png) | ![image](https://user-images.githubusercontent.com/81488993/138505586-fb8d2b13-2c28-4b2a-a1e9-e2136faba1d6.png) |
+| ![image](https://user-images.githubusercontent.com/81488993/140648424-ad9511d7-44f0-4d37-b625-944def418623.png) | ![image](https://user-images.githubusercontent.com/81488993/140648438-c0219fa3-aeb5-4684-93ff-c5332e1d0497.png) |
 
 It clearly shows American, Korean, Japanese and Chinese dominance in their respective regions.
 
-## Map of the evolution of medals won
+## Map of medals won by year
 
 | 1936 | 2016 |
 | ------------- | ------------- |
-| ![image](https://user-images.githubusercontent.com/81488993/138509538-ac43e10e-d816-4163-ac32-ea925bc83f1b.png) | ![image](https://user-images.githubusercontent.com/81488993/138507587-666eb93e-313b-44af-9bf1-51bbeeb2f9c3.png) |
+| ![image](https://user-images.githubusercontent.com/81488993/140648479-77293ff5-aee1-4aa9-a215-cb7709458a22.png) | ![image](https://user-images.githubusercontent.com/81488993/140648502-3baaa9e2-94e2-4e2e-a687-b7c2aa09a936.png) |
 
-This Map is about the evolution, so it's better to see it scroll in the app. But what we can say is that United states has been first since the beginning and that some countries has never gained any medals and some others has obtained their first ever medal quite recently. 
+This Map is about medals won by year, so it's better to see it scroll in the app. But what we can say is that United states has been dominant since the beginning and that some countries has never gained any medals and some others has obtained their first ever medal quite recently. We also see that there is an increasingly number of medals winner each editions, it shows that the Olympics games are more and more popular worldwide.
 
 ## Map of medals won by sport
 
 |Athletics|Gymnatiscs|
 |-|-|
-| ![image](https://user-images.githubusercontent.com/81488993/138508658-64d7314d-b491-431a-9b38-7326cb12b92f.png) | ![image](https://user-images.githubusercontent.com/81488993/138508871-a90e6b5a-2e76-48ee-ab69-3940617c85af.png) |
-|Skiing|Fencing|
-| ![image](https://user-images.githubusercontent.com/81488993/138508940-84494b6c-ac24-47f7-ba04-58d713609f3b.png)| ![image](https://user-images.githubusercontent.com/81488993/138509033-5b0637c7-dd8a-46d8-bb06-84a3ad293978.png) |  
+| ![image](https://user-images.githubusercontent.com/81488993/140648602-53ab8613-9402-4edf-931c-e19c9044db88.png) | ![image](https://user-images.githubusercontent.com/81488993/140648610-e12b894b-6ccb-42c3-b594-de38000c9ffa.png) |
+|Equestrianism|Fencing|
+| ![image](https://user-images.githubusercontent.com/81488993/140648642-1372c00f-ce2c-4920-8063-200ce63fcb14.png)| ![image](https://user-images.githubusercontent.com/81488993/140648656-993dde6d-c86d-4a4a-9516-a7a3427188dd.png) |  
 |Weightlifting|Conoeing|
-![image](https://user-images.githubusercontent.com/81488993/138509127-8388ac70-706b-4fe1-a40b-b4c9ae51098f.png) | ![image](https://user-images.githubusercontent.com/81488993/138509221-08d705b2-6522-4f55-8230-c8e41a803a48.png) |
+![image](https://user-images.githubusercontent.com/81488993/140648687-ec8a55e4-3214-4cc4-9f41-57b5386b1614.png) | ![image](https://user-images.githubusercontent.com/81488993/140648700-d2984827-1ccb-467b-a51f-16a5c4a77def.png) |
 
-These maps shows that the U.S are strong on almost every sport, it also shows that some countries have their favourite sports like France and Italy with fencing and Germany with canoeing. The Gymnastics and Weightlifting maps present a great confrontation between the U.S and China and the skiing map confirms that the Nordic countries are the strongest on skis
+These maps shows that the U.S are strong on almost every sport, it also shows that some countries have their favourite sports like France and Italy with fencing and Germany with canoeing. The Weightlifting map present a great confrontation between the U.S and China and the Equestrianism map confirms that the european countries are the strongest on horses.
 
 ## Performance by editions
 
 | Boxplot | Histogram |
 |-|-|
-| ![image](https://user-images.githubusercontent.com/81488993/138511147-c9afa932-7313-486e-935c-9aad17a648b7.png) | ![image](https://user-images.githubusercontent.com/81488993/138511346-35601092-d435-4539-8432-a164767be5d1.png) |
-| ![image](https://user-images.githubusercontent.com/81488993/138512153-0945ff6c-2a62-4ae2-ac7f-04772facb028.png) | ![image](https://user-images.githubusercontent.com/81488993/138512195-ab0f2219-8724-4a1d-b679-8ba34e16afdf.png) |
-| ![image](https://user-images.githubusercontent.com/81488993/138511714-02ce0cce-8843-4f36-9f4a-5e0ec0053140.png) | ![image](https://user-images.githubusercontent.com/81488993/138511782-b06676ea-ed48-40ab-8a65-ab139dfec0cb.png) |
+| ![image](https://user-images.githubusercontent.com/81488993/140648771-068a18b8-f611-4895-ad33-aed472863b3d.png) | ![image](https://user-images.githubusercontent.com/81488993/140648777-7cf25ab7-973b-4014-a143-f58a3841c9ef.png) |
+| ![image](https://user-images.githubusercontent.com/81488993/140648804-25afb437-1d29-455b-ba56-591881cd39a7.png) | ![image](https://user-images.githubusercontent.com/81488993/140648817-5b957813-dab3-4872-96df-7327060cd592.png) |
+| ![image](https://user-images.githubusercontent.com/81488993/140648857-b3751ec5-bad3-4064-acfa-343a8a73fe9f.png) | ![image](https://user-images.githubusercontent.com/81488993/140648884-e438fe1c-fc38-4396-978f-7dc17bfe5191.png) |
 
 What is most striking is that the athletes have progressed a lot since the beginning of the Olympics. In all the fields, the performances improve with time before stabilizing a little, in general since the years 70-80. Therefore, we can expect that worlds record become rarers and that athletes reach a point where the human body can't go further. 
 The Histograms highlight that 'good' performances are common because most of the results are not so far away from the record but doing a truly great performance is very rare, combined with the fact that boxes in the boxplots are getting smaller and smaller we can conclude that the athletes performances are increasingly close and good.  
 
-## Weight/Height by sport (summer editions)
+## Weight/Height by sport
 
-![image](https://user-images.githubusercontent.com/81488993/138570349-8a62af0b-4d7c-4854-9677-5981abd3b137.png)
+![image](https://user-images.githubusercontent.com/81488993/140648987-e3c3ff60-1558-4120-909d-558bd3ed6eb6.png)
 
 Here we have the height and weight displayed by sport and gender. We observe that there are notable differences depending on the sport. 
 We already observe a certain trend between the Weight/Height ratio but some sports are totally out of this trend. Indeed if we take the case of men, we see that gymnasts meet this trend, but they are the smallest, as well as the lightest. Conversely, we have sports like volleyball or basketball where men are the tallest and among the heaviest. Among those who do not follow this trend, we find for example the Weightlifters who have to be very heavy and small. Or tug-of-war athletes who have to be very tall and very heavy.
@@ -86,17 +87,16 @@ This is not surprising, as we can see that each sport requires very specific cha
 
 ## Sports and players wise medal Count
 
-![image](https://user-images.githubusercontent.com/81488993/138592823-d6376df8-937d-4d60-8ea1-f57d9e591ae3.png)
+![image](https://user-images.githubusercontent.com/81488993/140649446-31497ffa-d221-4694-a769-3bd2e640db90.png)
 
 These tables summarizes who won the most medals and which sport give the most medals, we can see that sport that most people will think about when thinking about olympics games are indeed the most represented. 
 The second table shows for instance how Micheal Phelps is a legend of the olympics and that he has a very impressive number of gold medals compared to the others, we also see that a lot of athletes played for the Soviet Union which demonstrate their power at the time. Nevertheless there is a majority of American athletes in this list.
  
 ## Medal count by GDP and Population
 
-![image](https://user-images.githubusercontent.com/81488993/139697849-ea20c0fd-b5a1-4d61-ad18-2a867488ca36.png)
+![image](https://user-images.githubusercontent.com/81488993/140649486-bac0ef81-1127-4ca6-aa79-75a881a47189.png)
 
-
-GDP and Population values are log values, so the real distibution is wider. We see that there is kind of a threshhold to be a succesfull nation in the olympic game, nations with a not enough aumount of GDP and population all have less than 30 medals. We also can see that the medals more correlateed with GDP than population.
+GDP and Population values are log values, so the real distibution is wider. We see that there is kind of a threshhold to be a succesfull nation in the olympic game, nations with a not enough aumount of GDP and population all have less than 30 medals. We also can see that the medals are more correlateed with GDP than population.
 
 
 # Dev Guide :
@@ -147,26 +147,22 @@ Once all the data is scraped, we write it all in a csv file.
 
 we decare locals variables like conversion tables and NOC codes.
 Then, as you can see below, we read the csv files, take infos that we want and reformart the datas into a dataframe.
-![image](https://user-images.githubusercontent.com/81488993/139867758-1ed13fef-8825-4389-aef9-f9ee7ca94d2a.png)
+![image](https://user-images.githubusercontent.com/81488993/140649526-48e030b4-0fd1-438d-9d43-d622425d8fd8.png)
 We do that multiple times and each time, depending on the finale graph that we want, the csv file, the selected columns and the format are different.
-Sometime we have to write a function to do theses steps in a more personnalized way, the function will be called later.
 
-## Application Architecture and HTML
+## Application Architecture
 
-There we define the architecture of the application with HTML elements, Dash core components and graphs.
-![image](https://user-images.githubusercontent.com/81488993/139869740-c378afe7-1f56-46f0-a43e-d00f76221cf9.png)
-It is designed as classic HTML files, but the main elements are dash and plotly elements.
-We also have to customize style there and use classnames which are written in typographie.css.
+There we define the architecture of the application with shiny's output and input elements and graphs.
+![image](https://user-images.githubusercontent.com/81488993/140649552-45f43a3a-faef-442e-830f-addd454b3829.png)
+It is designed as classic HTML files, but the main elements are shinys elements
 
-## Interactions and Callback
+## Interactions and renders
 
-The screen below is a basic callback, we use elements' ID to interact with them as output/input.
-![image](https://user-images.githubusercontent.com/81488993/139872118-9835ddbc-23c5-4f01-9b8c-a7a15ff776cc.png)
-We link inputs/outputs with a function to return a graph or to update some elements.
+The screen below is a basic render, we use elements' ID to interact with them as output/input.
+![image](https://user-images.githubusercontent.com/81488993/140649600-c1c6d958-d520-4692-9604-cd24ef3e0418.png)
+We link inputs/outputs with a render to return a graph or to update some elements.
 
 ## Other files
 
 The scrap.py file has been used to generate Running_results, Swimming_results and Athletics_results csv files.
 This file is now useless but can be upgraded to generate new datas.
-
-The asset folder contains the styling css file and the app's icon.
