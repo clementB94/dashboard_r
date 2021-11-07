@@ -110,7 +110,7 @@ print(weight_height)
 weight_height <- round(weight_height,2)
 
 # Medals by athletes
-player_wise <- df1 %>% select(Name,Medal) %>%
+player_wise <- read.csv('athlete_events.csv') %>% select(Name,Medal) %>%
     na.omit
 player_wise <- table(player_wise)
 player_wise <- as.data.frame(player_wise)
