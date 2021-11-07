@@ -11,7 +11,6 @@
 library(shiny)
 library(lubridate)
 library(tidyverse)
-library(gapminder)
 library(dplyr)
 library(ggplot2)
 library(plotly)
@@ -119,7 +118,7 @@ player_wise <- spread(player_wise, key=Medal, value=Freq)
 player_wise$Total <- player_wise$Bronze + player_wise$Gold + player_wise$Silver
 
 # Medals by sport
-sport_wise <- read.csv('athlete_events.csv') %>% select(Sport,Medal) %>%
+sport_wise <- df1 %>% select(Sport,Medal) %>%
     na.omit
 sport_wise <- table(sport_wise)
 sport_wise <- as.data.frame(sport_wise)
