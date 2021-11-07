@@ -87,7 +87,7 @@ This is not surprising, as we can see that each sport requires very specific cha
 
 ## Sports and players wise medal Count
 
-![image](https://user-images.githubusercontent.com/81488993/140649446-31497ffa-d221-4694-a769-3bd2e640db90.png)
+![image](https://user-images.githubusercontent.com/81488993/140649818-61cb925b-1712-4555-a294-fac198cabbb4.png)
 
 These tables summarizes who won the most medals and which sport give the most medals, we can see that sport that most people will think about when thinking about olympics games are indeed the most represented. 
 The second table shows for instance how Micheal Phelps is a legend of the olympics and that he has a very impressive number of gold medals compared to the others, we also see that a lot of athletes played for the Soviet Union which demonstrate their power at the time. Nevertheless there is a majority of American athletes in this list.
