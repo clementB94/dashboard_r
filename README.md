@@ -82,7 +82,7 @@ The Histograms highlight that 'good' performances are common because most of the
 ![image](https://user-images.githubusercontent.com/81488993/140648987-e3c3ff60-1558-4120-909d-558bd3ed6eb6.png)
 
 Here we have the height and weight displayed by sport and gender. We observe that there are notable differences depending on the sport. 
-We already observe a certain trend between the Weight/Height ratio but some sports are totally out of this trend. Indeed if we take the case of men, we see that gymnasts meet this trend, but they are the smallest, as well as the lightest. Conversely, we have sports like volleyball or basketball where men are the tallest and among the heaviest. Among those who do not follow this trend, we find for example the Weightlifters who have to be very heavy and small. Or tug-of-war athletes who have to be very tall and very heavy.
+We already observe a certain trend between the Weight/Height ratio but some sports are totally out of this trend. Indeed if we take the case of men, we see that gymnasts meet this trend, but they are the smallest, as well as the lightest. Conversely, we have sports like volleyball or basketball where men are the tallest and among the heaviest. Among those who do not follow this trend, we find for example the Weightlifters who have to be very heavy and small. Or tug-of-war athletes who must be as heavy as possible.
 This is not surprising, as we can see that each sport requires very specific characteristics of size and weight depending on the type of sport, power or agility, team or individual, combat or precision etc.
 
 ## Sports and players wise medal Count
