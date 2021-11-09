@@ -22,7 +22,7 @@ The Olympics Games Datasets:
 
 
 The R's libraries required for the compilation are :  Shiny, lubridate, tidyverse, dplyr, plotly, DT, ggrepel and ggplot2.
-You can download the folder and open the code with Rstudio, then you can click on 'Run the app' on the top corner left. If it doesn't work you can simply copy(ctrl+c) all the code and paste(ctrl+v) it in the console prompt (if it's located in the 'dashboard_r' folder) and then press enter.
+You can download the folder and open the app.R file with Rstudio, then you can click on 'Run the app' on the top corner left. If it doesn't work you can simply copy(ctrl+c) all the code and paste(ctrl+v) it in the console prompt (if it's located in the 'dashboard_r' folder) and then press enter.
 (you might wait a bit because there is a lot of datas and graphs to browse)
 
 
