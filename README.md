@@ -22,7 +22,7 @@ The Olympics Games Datasets:
 
 
 The R's libraries required for the compilation are :  Shiny, lubridate, tidyverse, dplyr, plotly, DT, ggrepel and ggplot2.
-You can download the folder and open the code with Rstudio, then you can click on 'Run the app' on the top corner left. If it doesn't work you can simply copy(ctrl+c) all the code and paste(ctrl+v) it in the console prompt (if it's located in the 'dashboard_r' folder) and then press enter.
+You can download the folder and open the app.R file with Rstudio, then you can click on 'Run the app' on the top corner left. If it doesn't work you can simply copy(ctrl+c) all the code and paste(ctrl+v) it in the console prompt (if it's located in the 'dashboard_r' folder) and then press enter.
 (you might wait a bit because there is a lot of datas and graphs to browse)
 
 
@@ -82,7 +82,7 @@ The Histograms highlight that 'good' performances are common because most of the
 ![image](https://user-images.githubusercontent.com/81488993/140648987-e3c3ff60-1558-4120-909d-558bd3ed6eb6.png)
 
 Here we have the height and weight displayed by sport and gender. We observe that there are notable differences depending on the sport. 
-We already observe a certain trend between the Weight/Height ratio but some sports are totally out of this trend. Indeed if we take the case of men, we see that gymnasts meet this trend, but they are the smallest, as well as the lightest. Conversely, we have sports like volleyball or basketball where men are the tallest and among the heaviest. Among those who do not follow this trend, we find for example the Weightlifters who have to be very heavy and small. Or tug-of-war athletes who have to be very tall and very heavy.
+We already observe a certain trend between the Weight/Height ratio but some sports are totally out of this trend. Indeed if we take the case of men, we see that gymnasts meet this trend, but they are the smallest, as well as the lightest. Conversely, we have sports like volleyball or basketball where men are the tallest and among the heaviest. Among those who do not follow this trend, we find for example the Weightlifters who have to be very heavy and small. Or tug-of-war athletes who must be as heavy as possible.
 This is not surprising, as we can see that each sport requires very specific characteristics of size and weight depending on the type of sport, power or agility, team or individual, combat or precision etc.
 
 ## Sports and players wise medal Count
@@ -90,7 +90,7 @@ This is not surprising, as we can see that each sport requires very specific cha
 ![image](https://user-images.githubusercontent.com/81488993/140649818-61cb925b-1712-4555-a294-fac198cabbb4.png)
 
 These tables summarizes who won the most medals and which sport give the most medals, we can see that sport that most people will think about when thinking about olympics games are indeed the most represented. 
-The second table shows for instance how Micheal Phelps is a legend of the olympics and that he has a very impressive number of gold medals compared to the others, we also see that a lot of athletes played for the Soviet Union which demonstrate their power at the time. Nevertheless there is a majority of American athletes in this list.
+The playerwise table shows for instance how Micheal Phelps is a legend of the olympics and that he has a very impressive number of gold medals compared to the others, we also see that a lot of athletes played for the Soviet Union which demonstrate their power at the time. Nevertheless there is a majority of American athletes in the first places of this list.
  
 ## Medal count by GDP and Population
 
