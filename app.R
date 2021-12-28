@@ -107,7 +107,7 @@ weight_height <- read.csv('athlete_events.csv') %>%
     select(Sport, Sex, Weight, Height, Age) %>% na.omit
 weight_height <- aggregate(weight_height[,3:4],list(weight_height$Sport,weight_height$Sex),mean)
 print(weight_height)
-weight_height <- round(weight_height,2)
+weight_height %>% mutate_at(vars(Weight, Height), funs(round(., 2)))
 
 # Medals by athletes
 player_wise <- read.csv('athlete_events.csv') %>% select(Name,Medal) %>%
